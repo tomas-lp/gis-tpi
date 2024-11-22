@@ -1,0 +1,38 @@
+#capas {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 12px;
+  padding: 10px 14px;
+  min-width: 10rem;
+
+  transition: all 150ms;
+}
+
+#capas ul {
+  list-style: none; /* Elimina los puntos de la lista */
+  margin: 0;
+  padding: 0;
+}
+
+#capas ul li {
+  margin-bottom: 10px; /* Espaciado entre las capas */
+}
+
+#capas ul li:last-of-type {
+  margin-bottom: 0px;
+}
+
+#capas label {
+  font-size: 17px;
+  color: #4d4d4d; /* Texto gris oscuro */
+  cursor: pointer;
+  display: flex; /* Permite alinear checkbox e ícono con el texto */
+  align-items: center;
+}
+
+#capas input[type='checkbox'] {
+  margin-right: 10px; /* Espaciado entre el checkbox y el texto */
+}

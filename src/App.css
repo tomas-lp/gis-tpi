@@ -1,0 +1,93 @@
+body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+.ol-zoom {
+  bottom: 20px;
+  left: 20px;
+  top: auto;
+}
+
+.ol-zoom-in {
+  width: 50px;
+}
+
+#controles {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+#controles .boton:last-of-type {
+  margin-right: 0px;
+}
+
+.logo {
+    margin: 0px 10px 0% 0px;
+    padding: 0px 5px;
+}
+
+.logo img{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton{
+  width: auto;
+  height: auto;
+  margin: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 5px;
+  transition: all 0.5s;
+  position: relative
+}
+
+.clickeado{
+   background-color: white;
+   border-radius: 6px;
+  }
+  
+.boton img {
+  width: 32px;
+  height: 32px;
+}
+
+.logo:hover{
+    transform: rotate(360deg);
+    transition: all 1s;
+}
+
+.boton:hover{
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.boton:hover + .tooltip {
+  opacity: 1;
+}
+
+.tooltip{
+  height: 20px;
+  transition: all 150ms;
+}
+
+#capas {
+  top:62px;
+  left:76px;
+  position: absolute;
+}
