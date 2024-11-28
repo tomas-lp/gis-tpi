@@ -5,19 +5,15 @@ import TileLayer from "ol/layer/Tile.js";
 import { TileWMS } from "ol/source";
 import Zoom from 'ol/control/Zoom';
 
-import consulta from './assets/consulta.png';
-import agregar from './assets/agregar.png';
-import capas from './assets/capas.png';
-import regla from './assets/regla.png';
-import logo from './assets/mundo.png';
+import { consulta, agregar, capas, regla, logo } from "./assets/imagenes";
 import ListaCapas from "./components/ListaCapas";
 import { Tooltip } from "react-tooltip";
 import Mensaje from "./components/Mensaje";
 import InfoCapas from "./components/InfoCapas";
 
-import { fromLonLat, get as getProjection } from 'ol/proj';
-import proj4 from 'proj4';
-import { register } from 'ol/proj/proj4';
+// import { fromLonLat, get as getProjection } from 'ol/proj';
+// import proj4 from 'proj4';
+// import { register } from 'ol/proj/proj4';
 
 import "ol/ol.css";
 import './app.css';
