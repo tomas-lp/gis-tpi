@@ -5,7 +5,7 @@ function Mensaje({ texto, setEstado }) {
   return (
     <div id='PopUpMensaje'>
       <p>{texto}</p>
-      <img className='boton' src={cerrar} alt='' onClick={() => setEstado(0)} />
+      <img className='boton' src={cerrar} alt='' onClick={() => setEstado(1)} />
     </div>
   );
 }

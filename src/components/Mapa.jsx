@@ -1,35 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Map from 'ol/Map.js';
 import View from 'ol/View.js';
-import TileLayer from 'ol/layer/Tile.js';
-import { TileWMS } from 'ol/source';
 import Zoom from 'ol/control/Zoom';
+import { capaBase } from '../utils/capas';
+import { agregarInteraccionMedir, eliminarInteraccionMedir } from '../utils/interaccionMedir';
 
-export default function Mapa({ estado }) {
+
+export default function Mapa({ estado, capasActivas }) {
+
+  const [map, setMap] = useState(null);
+
+  const limpiarInteracciones = () => {
+    eliminarInteraccionMedir(map);
+  }
 
   useEffect(() => {
-    //Centro argentina
-    //proj4.defs('EPSG:4326', '+proj=longlat +datum=WGS84 +no_defs');
-    //register(proj4);
 
     const map = new Map({
       target: 'map',
-      layers: [
-        new TileLayer({
-          source: new TileWMS({
-            url: 'https://wms.ign.gob.ar/geoserver/ows',
-            params: {
-              LAYERS: 'capabaseargenmap',
-              VERSION: '1.1.1',
-            },
-          }),
-        }),
-      ],
+      layers: [capaBase],
       view: new View({
-        // Para preguntar
-        // projection: getProjection('EPSG:4326'), // Usar EPSG:4326
-        // center: fromLonLat([-64.5, -38.5]), // Coordenadas de Argentina (aproximado)
-        // zoom: 4, // Nivel de zoom
 
         center: [-7288745, -4959008],
         zoom: 4.5,
@@ -42,10 +32,37 @@ export default function Mapa({ estado }) {
     });
     map.addControl(zoomControl);
 
+    // agregarInteraccionMedir(map);
+    setMap(map);
+
     return () => {
       map.setTarget(null);
     };
   }, []);
+
+  useEffect(()=> {
+    if (map) {
+      let capasAMostrar = []
+      
+      capasActivas.forEach(capa => {
+        if(capa.isVisible === true){
+          capasAMostrar.push(capa.capaOL);
+        }
+      });
+
+      map.setLayers([capaBase, ...capasAMostrar])
+    }
+  }, [capasActivas])
+  
+  useEffect(()=> {
+    if (map) {
+      limpiarInteracciones();
+  
+      if (estado === 3) {
+        agregarInteraccionMedir(map);
+      }
+    }
+  }, [estado])
 
   return <div id='map' style={{ width: '100vw', height: '100vh' }} />;
 }
