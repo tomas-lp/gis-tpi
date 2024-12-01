@@ -9,12 +9,11 @@ const nombreCapasCatedra = [
   'red_vial',
 ]
 
-const nombreCapasAuxiliares = []
-
 const crearCapaSIG = (nombre) => {
   return new TileLayer({
     source: new TileWMS({
-      url: 'http://localhost:8080/geoserver/gis/wms',
+      // url: 'http://localhost:8080/geoserver/gis/wms',
+      url: 'http://localhost:8080/cgi-bin/qgis_mapserv.fcgi.exe',
       params: {
         LAYERS: nombre,
         VERSION: '1.1.1',
@@ -41,11 +40,22 @@ const capaBase = new TileLayer({
     url: 'https://wms.ign.gob.ar/geoserver/ows',
     params: {
       LAYERS: 'capabaseargenmap',
+      // LAYERS: 'mapabase_gris',
       VERSION: '1.1.1',
     },
   }),
 })
 
+const capaAgregar = new VectorLayer({
+  source: new VectorSource(),
+  style: {
+    'fill-color': 'rgba(255, 255, 255, 0.2)',
+    'stroke-color': '#ffcc33',
+    'stroke-width': 2,
+    'circle-radius': 7,
+    'circle-fill-color': '#ffcc33',
+  },
+});
 
 
 const capasCatedra = nombreCapasCatedra.map((nombreCapa)=> crearCapaSIG(nombreCapa))
@@ -65,5 +75,6 @@ capasCatedra.forEach((capa)=>{
 export {
   nombreCapasCatedra,
   capas,
-  capaBase
+  capaBase,
+  capaAgregar
 }

@@ -6,6 +6,7 @@ import { Tooltip } from "react-tooltip";
 import Mensaje from "./components/Mensaje";
 import InfoCapas from "./components/InfoCapas";
 import { capas } from "./utils/capas";
+import BotonEliminarPoligonos from "./components/BotonEliminarPoligonos";
 
 // import { fromLonLat, get as getProjection } from 'ol/proj';
 // import proj4 from 'proj4';
@@ -92,6 +93,8 @@ function MapView() {
       {estado === 4 && <Mensaje texto='Seleccione un punto o un área para obtener información.' setEstado={setEstado}/>}
 
       {estado === 4 && <InfoCapas />}
+      {estado === 2 && <BotonEliminarPoligonos/>}
+
       
     </>
   );

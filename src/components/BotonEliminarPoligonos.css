@@ -1,0 +1,36 @@
+#botonEliminarPoligonos{
+    animation: 0.2s ease-out 0s 1 dissolve;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+    border-radius: 12px;
+    padding: 12px 14px;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    border: 2px solid rgb(231, 160, 160);
+}
+
+#botonEliminarPoligonos p{
+    padding: 0px;
+    margin: 0px;
+    line-height: 32px;
+    margin: 0px 5px;
+    color: #4d4d4d;
+}
+
+#botonEliminarPoligonos img {
+    height: 24px;
+    width: 24px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#botonEliminarPoligonos:hover{
+    background-color: white;
+    border-radius: 12px;
+    cursor: pointer;
+}

@@ -1,4 +1,5 @@
 .infoCapas {
+  animation: 0.2s ease-out 0s 1 dissolve;
   position: absolute;
   bottom: 40px;
   right: 40px;

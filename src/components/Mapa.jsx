@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import Zoom from 'ol/control/Zoom';
-import { capaBase } from '../utils/capas';
+import { capaBase, capaAgregar } from '../utils/capas';
 import { agregarInteraccionMedir, eliminarInteraccionMedir } from '../utils/interaccionMedir';
+import { agregarInteraccionAgregar, eliminarInteraccionAgregar } from '../utils/interaccionAgregar';
 
 
 export default function Mapa({ estado, capasActivas }) {
@@ -12,6 +13,7 @@ export default function Mapa({ estado, capasActivas }) {
 
   const limpiarInteracciones = () => {
     eliminarInteraccionMedir(map);
+    eliminarInteraccionAgregar(map);
   }
 
   useEffect(() => {
@@ -50,13 +52,17 @@ export default function Mapa({ estado, capasActivas }) {
         }
       });
 
-      map.setLayers([capaBase, ...capasAMostrar])
+      map.setLayers([capaBase, ...capasAMostrar, capaAgregar])
     }
   }, [capasActivas])
   
   useEffect(()=> {
     if (map) {
       limpiarInteracciones();
+
+      if (estado === 2) {
+        agregarInteraccionAgregar(map)
+      }
   
       if (estado === 3) {
         agregarInteraccionMedir(map);

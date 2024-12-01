@@ -86,8 +86,15 @@ body {
   transition: all 150ms;
 }
 
-#capas {
-  top:62px;
-  left:76px;
-  position: absolute;
+@keyframes dissolve {
+  0% {
+    filter: blur(2px);
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0px);
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
