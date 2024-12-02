@@ -5,15 +5,17 @@ import Zoom from 'ol/control/Zoom';
 import { capaBase, capaAgregar } from '../utils/capas';
 import { agregarInteraccionMedir, eliminarInteraccionMedir } from '../utils/interaccionMedir';
 import { agregarInteraccionAgregar, eliminarInteraccionAgregar } from '../utils/interaccionAgregar';
+import { agregarInteraccionConsulta, eliminarInteraccionConsulta } from '../utils/interaccionConsulta';
 
 
-export default function Mapa({ estado, capasActivas }) {
+export default function Mapa({ estado, capasActivas, setVerInfoCapas }) {
 
   const [map, setMap] = useState(null);
 
   const limpiarInteracciones = () => {
     eliminarInteraccionMedir(map);
     eliminarInteraccionAgregar(map);
+    eliminarInteraccionConsulta(map);
   }
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function Mapa({ estado, capasActivas }) {
       target: 'map',
       layers: [capaBase],
       view: new View({
-
+        // projection: 'EPSG:4326',
         center: [-7288745, -4959008],
         zoom: 4.5,
       }),
@@ -66,6 +68,10 @@ export default function Mapa({ estado, capasActivas }) {
   
       if (estado === 3) {
         agregarInteraccionMedir(map);
+      }
+
+      if (estado === 4) {
+        agregarInteraccionConsulta(map, setVerInfoCapas);
       }
     }
   }, [estado])

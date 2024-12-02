@@ -10,17 +10,34 @@
   justify-content: flex-start;
   align-items: flex-start;
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 14px 14px;
   color: #4d4d4d;
   min-width: 250px;
+  max-height: 50vh;
+  overflow-x:hidden;
+  white-space: nowrap;
+  overflow-y: auto;
+  text-overflow: ellipsis;
 }
 
-.infoCapas *{
-    padding: 0px 5px;
+.infoCapas > p{
+    margin: 0;
 }
 
-.infoCapas p{
-    margin: 6px;
+.infoCapas details {
+  overflow-x:hidden;
+  white-space: nowrap;
+  overflow-y: auto;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+.infoCapas details p{
+  margin: 6px;
+  overflow-x:hidden;
+  white-space: nowrap;
+  overflow-y: auto;
+  text-overflow: ellipsis;
 }
 
 hr {

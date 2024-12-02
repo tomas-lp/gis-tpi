@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { consulta, agregar, capas as imgCapas, regla, logo } from "./assets/imagenes";
-import Mapa from "./components/mapa";
+import Mapa from "./components/Mapa";
 import ListaCapas from "./components/ListaCapas";
 import { Tooltip } from "react-tooltip";
 import Mensaje from "./components/Mensaje";
@@ -25,6 +25,7 @@ const ESTADOS = {
 function MapView() {
   const [estado, setEstado] = useState(1);
   const [verListaCapas, setVerListaCapas] = useState(false);
+  const [verInfoCapas, setVerInfoCapas] = useState(false);
   const [capasActivas, setCapasActivas] = useState(capas)
 
   function actualizarEstado (numero) {
@@ -37,7 +38,7 @@ function MapView() {
   
   return (
     <>
-      <Mapa estado={estado} capasActivas={capasActivas}/>
+      <Mapa estado={estado} capasActivas={capasActivas} setVerInfoCapas={setVerInfoCapas}/>
       
       <div id="controles">
         <div className="logo">
@@ -92,7 +93,7 @@ function MapView() {
       {estado === 3 && <Mensaje texto='Coloque los puntos entre los que quiera calcular Ia distancia.' setEstado={setEstado}/>}
       {estado === 4 && <Mensaje texto='Seleccione un punto o un área para obtener información.' setEstado={setEstado}/>}
 
-      {estado === 4 && <InfoCapas />}
+      {estado === 4 && verInfoCapas && <InfoCapas />}
       {estado === 2 && <BotonEliminarPoligonos/>}
 
       
