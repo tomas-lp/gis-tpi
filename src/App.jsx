@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { consulta, agregar, capas as imgCapas, regla, logo } from "./assets/imagenes";
+import { consulta, agregar, capas as imgCapas, regla, logo, norte } from "./assets/imagenes";
 import Mapa from "./components/Mapa";
 import ListaCapas from "./components/ListaCapas";
 import { Tooltip } from "react-tooltip";
@@ -39,7 +39,13 @@ function MapView() {
   
   return (
     <>
-      <Mapa estado={estado} capasActivas={capasActivas} setVerInfoCapas={setVerInfoCapas}/>
+
+      <Mapa estado={estado} capasActivas={capasActivas} verInfoCapas={verInfoCapas} setVerInfoCapas={setVerInfoCapas}/>
+
+      <img id="norte" src={norte} alt="" />
+
+      {estado !== 2 && <p id="coordenadas">EPSG: 4326</p>}      
+
       
       <div id="controles">
         <div className="logo">

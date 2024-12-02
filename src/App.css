@@ -4,14 +4,46 @@ body {
   margin: 0px;
 }
 
+#norte{
+  position: absolute;
+  width: 45px;
+  height: auto;
+  bottom: 80px;
+  left: 20px;
+}
+
 .ol-zoom {
   bottom: 20px;
-  left: 20px;
+  left: 30px;
   top: auto;
 }
 
 .ol-zoom-in {
   width: 50px;
+}
+
+.ol-scale-line {
+  animation: 0.2s ease-out 0s 1 dissolve;
+  position: absolute;
+  bottom: 30px;
+  left: auto;
+  right: 40px;
+  height: fit-content;
+  width: fit-content;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;  
+}
+
+#coordenadas{
+  animation: 0.2s ease-out 0s 1 dissolve;
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: #555555;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 8px 12px;
+  border-radius: 12px;
 }
 
 #controles {

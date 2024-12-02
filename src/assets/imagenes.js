@@ -5,6 +5,7 @@ import regla from './regla.png';
 import logo from './mundo.png';
 import cerrar from './cerrar.png';
 import eliminar from './eliminar.png'
+import norte from './norte.png';
 
 export {
   consulta,
@@ -13,5 +14,6 @@ export {
   regla,
   logo,
   cerrar,
-  eliminar
+  eliminar,
+  norte
 }

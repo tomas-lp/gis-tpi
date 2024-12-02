@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import Zoom from 'ol/control/Zoom';
+import ScaleLine from 'ol/control/ScaleLine'
 import { capaBase, capaAgregar } from '../utils/capas';
 import { agregarInteraccionMedir, eliminarInteraccionMedir } from '../utils/interaccionMedir';
 import { agregarInteraccionAgregar, eliminarInteraccionAgregar } from '../utils/interaccionAgregar';
 import { agregarInteraccionConsulta, eliminarInteraccionConsulta } from '../utils/interaccionConsulta';
 
 
-export default function Mapa({ estado, capasActivas, setVerInfoCapas }) {
-
+export default function Mapa({ estado, capasActivas, verInfoCapas, setVerInfoCapas }) {
+  
   const [map, setMap] = useState(null);
 
   const limpiarInteracciones = () => {
@@ -29,12 +30,12 @@ export default function Mapa({ estado, capasActivas, setVerInfoCapas }) {
       }),
       controls: [],
     });
-
+    
     const zoomControl = new Zoom({
       target: '',
     });
     map.addControl(zoomControl);
-
+    
     // agregarInteraccionMedir(map);
     setMap(map);
 
@@ -42,6 +43,20 @@ export default function Mapa({ estado, capasActivas, setVerInfoCapas }) {
       map.setTarget(null);
     };
   }, []);
+
+  useEffect(()=> {
+    if (map) {
+      const scaleControl = new ScaleLine({
+        units: 'metric',
+      });
+      
+      map.addControl(scaleControl);
+
+      if (verInfoCapas) {
+        map.removeControl(scaleControl);
+      }
+    }
+  }, [map, verInfoCapas])
 
   useEffect(()=> {
     if (map) {
