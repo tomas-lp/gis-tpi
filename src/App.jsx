@@ -5,6 +5,7 @@ import ListaCapas from "./components/ListaCapas";
 import { Tooltip } from "react-tooltip";
 import Mensaje from "./components/Mensaje";
 import InfoCapas from "./components/InfoCapas";
+import Leyenda from "./components/Leyenda";
 import { capas } from "./utils/capas";
 import BotonEliminarPoligonos from "./components/BotonEliminarPoligonos";
 
@@ -83,11 +84,11 @@ function MapView() {
         >
           <img src={consulta} alt="" />
         </a>
-
       
       </div>
 
       <Tooltip id="tooltip" style={{padding: 0, paddingLeft: '10px', paddingRight: '10px', marginTop: '-10px'}}/>
+      <Leyenda capas={capasActivas}/>
 
       {estado === 2 && <Mensaje texto='Dibuje los puntos del polígono que desee agregar.' setEstado={setEstado}/>}
       {estado === 3 && <Mensaje texto='Coloque los puntos entre los que quiera calcular Ia distancia.' setEstado={setEstado}/>}

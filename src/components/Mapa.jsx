@@ -24,7 +24,6 @@ export default function Mapa({ estado, capasActivas, setVerInfoCapas }) {
       target: 'map',
       layers: [capaBase],
       view: new View({
-        // projection: 'EPSG:4326',
         center: [-7288745, -4959008],
         zoom: 4.5,
       }),

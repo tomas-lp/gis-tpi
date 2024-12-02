@@ -34,6 +34,7 @@ body {
 .logo {
     margin: 0px 10px 0% 0px;
     padding: 0px 5px;
+    transition: all 1s;
 }
 
 .logo img{
