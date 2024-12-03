@@ -88,7 +88,7 @@ const modifyStyle = new Style({
     }),
   }),
   text: new Text({
-    text: 'Drag to modify',
+    text: 'Arrastre para modificar.',
     font: '12px Calibri,sans-serif',
     fill: new Fill({
       color: 'rgba(255, 255, 255, 1)',
@@ -227,9 +227,8 @@ let draw; // global so we can remove it later
 function addInteraction(map) {
   const drawType = typeSelect;
   const activeTip =
-    'Click to continue drawing the ' +
-    (drawType === 'Polygon' ? 'polygon' : 'line');
-  const idleTip = 'Click to start measuring';
+    'Haga click para agregar otro punto.';
+  const idleTip = 'Haga click para empezar a medir.';
   let tip = idleTip;
   draw = new Draw({
     source: source,
