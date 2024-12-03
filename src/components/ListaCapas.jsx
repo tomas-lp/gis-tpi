@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import './ListaCapas.css'
-import {capas, nombreCapasCatedra} from '../utils/capas'
+import {nombreCapasCatedra} from '../utils/capas'
 
 const ListaCapas = ({capasActivas, setCapasActivas}) => {
 

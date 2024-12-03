@@ -1,5 +1,3 @@
-import Map from 'ol/Map.js';
-import View from 'ol/View.js';
 import {
   Circle as CircleStyle,
   Fill,
@@ -8,11 +6,12 @@ import {
   Style,
   Text,
 } from 'ol/style.js';
-import {Draw, Modify} from 'ol/interaction.js';
+import {Draw, Modify, Snap} from 'ol/interaction.js';
 import {LineString, Point} from 'ol/geom.js';
-import {OSM, Vector as VectorSource} from 'ol/source.js';
-import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
+import {Vector as VectorSource} from 'ol/source.js';
+import {Vector as VectorLayer} from 'ol/layer.js';
 import {getArea, getLength} from 'ol/sphere.js';
+import { capaAgregar } from './capas';
 
 const typeSelect = 'Polygon'
 const showSegments = true;
@@ -212,17 +211,7 @@ const capaMedir = new VectorLayer({
   },
 });
 
-// const map = new Map({
-//   layers: [raster, vector],
-//   target: 'map',
-//   view: new View({
-//     center: [-11000000, 4600000],
-//     zoom: 15,
-//   }),
-// });
-
-
-let draw; // global so we can remove it later
+let draw;
 
 function addInteraction(map) {
   const drawType = typeSelect;
@@ -256,28 +245,21 @@ function addInteraction(map) {
   map.addInteraction(draw);
 }
 
-// typeSelect.onchange = function () {
-//   map.removeInteraction(draw);
-//   addInteraction();
-// };
-
-
-
-// showSegments.onchange = function () {
-//   vector.changed();
-//   draw.getOverlay().changed();
-// };
-
+const snap = new Snap({
+  source: capaAgregar.getSource(),
+});
 
 export const agregarInteraccionMedir = (map) => {  
   map.addLayer(capaMedir);
   map.addInteraction(modify);
   addInteraction(map);
+  map.addInteraction(snap);
 }
 
 export const eliminarInteraccionMedir = (map) => {
   if (map.getLayers().array_.includes(capaMedir)) {
     map.removeInteraction(draw);
+    map.removeInteraction(snap);
     source.clear();
     map.removeLayer(capaMedir);
   }

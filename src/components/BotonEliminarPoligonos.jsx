@@ -1,4 +1,4 @@
-import { eliminar as imgEliminar } from '../assets/imagenes';
+import { imgEliminar } from '../assets/imagenes';
 import './BotonEliminarPoligonos.css';
 import { Tooltip } from "react-tooltip";
 import { capaAgregar } from '../utils/capas';

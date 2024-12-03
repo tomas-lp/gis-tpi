@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { consulta, agregar, capas as imgCapas, regla, logo, norte } from "./assets/imagenes";
+import React, { useState } from "react";
+import { imgConsulta, imgAgregar, imgCapas, imgRegla, imgLogo, imgNorte } from "./assets/imagenes";
 import Mapa from "./components/Mapa";
 import ListaCapas from "./components/ListaCapas";
 import { Tooltip } from "react-tooltip";
@@ -9,14 +9,11 @@ import Leyenda from "./components/Leyenda";
 import { capas } from "./utils/capas";
 import BotonEliminarPoligonos from "./components/BotonEliminarPoligonos";
 
-// import { fromLonLat, get as getProjection } from 'ol/proj';
-// import proj4 from 'proj4';
-// import { register } from 'ol/proj/proj4';
-
 import "ol/ol.css";
 import './app.css';
 
-const ESTADOS = {
+// Estados en los que puede estar la aplicación.
+export const ESTADOS = {
   defecto: 1,
   agregar: 2,
   medir: 3,
@@ -24,16 +21,16 @@ const ESTADOS = {
 }
 
 function MapView() {
-  const [estado, setEstado] = useState(1);
+  const [estado, setEstado] = useState(ESTADOS.defecto);
   const [verListaCapas, setVerListaCapas] = useState(false);
   const [verInfoCapas, setVerInfoCapas] = useState(false);
   const [capasActivas, setCapasActivas] = useState(capas)
 
-  function actualizarEstado (numero) {
-    if (numero === estado){
-      setEstado(1);
+  function actualizarEstado (nuevoEstado) {
+    if (nuevoEstado === estado){
+      setEstado(ESTADOS.defecto);
     } else {
-      setEstado(numero);
+      setEstado(nuevoEstado);
     }
   }
   
@@ -42,14 +39,14 @@ function MapView() {
 
       <Mapa estado={estado} capasActivas={capasActivas} verInfoCapas={verInfoCapas} setVerInfoCapas={setVerInfoCapas}/>
 
-      <img id="norte" src={norte} alt="" />
+      <img id="norte" src={imgNorte} alt="" />
 
-      {estado !== 2 && <p id="coordenadas">EPSG: 4326</p>}      
+      {estado !== ESTADOS.agregar && <p id="coordenadas">EPSG: 4326</p>}      
 
       
       <div id="controles">
         <div className="logo">
-          <img src={logo} alt="" />
+          <img src={imgLogo} alt="" />
         </div>
         
         <a
@@ -65,30 +62,33 @@ function MapView() {
         <div> {verListaCapas && <ListaCapas className='lista-capas' capasActivas={capasActivas} setCapasActivas={setCapasActivas}/> }</div>
         
         <a 
-          className={`boton ${estado === 2 ? 'clickeado' : ''}`} onClick={() => actualizarEstado(2)}
+          className={`boton ${estado === ESTADOS.agregar ? 'clickeado' : ''}`} 
+          onClick={() => actualizarEstado(ESTADOS.agregar)}
           data-tooltip-id='tooltip' 
           data-tooltip-content="Agregar Polígono"
           data-tooltip-place="top"
         >
-          <img src={agregar} alt="" />
+          <img src={imgAgregar} alt="" />
         </a>
 
         <a 
-          className={`boton ${estado === 3 ? 'clickeado' : ''}`} onClick={() => actualizarEstado(3)}
+          className={`boton ${estado === ESTADOS.medir ? 'clickeado' : ''}`} 
+          onClick={() => actualizarEstado(ESTADOS.medir)}
           data-tooltip-id='tooltip' 
           data-tooltip-content="Medir distancias"
           data-tooltip-place="top"
         >
-          <img src={regla} alt="" />
+          <img src={imgRegla} alt="" />
         </a>
 
         <a 
-          className={`boton ${estado === 4 ? 'clickeado' : ''}`} onClick={() => actualizarEstado(4)}
+          className={`boton ${estado === ESTADOS.consulta ? 'clickeado' : ''}`} 
+          onClick={() => actualizarEstado(ESTADOS.consulta)}
           data-tooltip-id='tooltip' 
           data-tooltip-content="Realizar consulta"
           data-tooltip-place="top"
         >
-          <img src={consulta} alt="" />
+          <img src={imgConsulta} alt="" />
         </a>
       
       </div>
@@ -96,12 +96,12 @@ function MapView() {
       <Tooltip id="tooltip" style={{padding: 0, paddingLeft: '10px', paddingRight: '10px', marginTop: '-10px'}}/>
       <Leyenda capas={capasActivas}/>
 
-      {estado === 2 && <Mensaje texto='Dibuje los puntos del polígono que desee agregar.' setEstado={setEstado}/>}
-      {estado === 3 && <Mensaje texto='Coloque los puntos entre los que quiera calcular Ia distancia.' setEstado={setEstado}/>}
-      {estado === 4 && <Mensaje texto='Seleccione un punto o un área para obtener información.' setEstado={setEstado}/>}
+      {estado === ESTADOS.agregar && <Mensaje texto='Dibuje los puntos del polígono que desee agregar.' setEstado={setEstado}/>}
+      {estado === ESTADOS.medir && <Mensaje texto='Coloque los puntos entre los que quiera calcular Ia distancia.' setEstado={setEstado}/>}
+      {estado === ESTADOS.consulta && <Mensaje texto='Seleccione un punto o un área para obtener información.' setEstado={setEstado}/>}
 
-      {estado === 4 && verInfoCapas && <InfoCapas />}
-      {estado === 2 && <BotonEliminarPoligonos/>}
+      {estado === ESTADOS.consulta && verInfoCapas && <InfoCapas />}
+      {estado === ESTADOS.agregar && <BotonEliminarPoligonos/>}
 
       
     </>

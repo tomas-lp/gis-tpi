@@ -20,7 +20,7 @@ const capaConsulta = new VectorLayer({
   }),
 });
 
-var selectInteraction = new DragBox({
+let selectInteraction = new DragBox({
   condition: always,
   style: new Style({
     stroke: new Stroke({

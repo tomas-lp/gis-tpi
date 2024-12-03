@@ -1,15 +1,7 @@
-import Map from 'ol/Map.js';
-import View, { isNoopAnimation } from 'ol/View.js';
 import {Draw, Modify, Select, Snap} from 'ol/interaction.js';
-import {OSM, Vector as VectorSource} from 'ol/source.js';
-import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
 import { capaAgregar } from './capas';
 
 const TYPE = 'Polygon';
-
-const raster = new TileLayer({
-  source: new OSM(),
-});
 
 const ExampleModify = {
   init: function (map) {
@@ -49,9 +41,6 @@ const ExampleModify = {
     this.modify.setActive(active);
   },
 };
-
-
-// const optionsForm = document.getElementById('options-form');
 
 const ExampleDraw = {
   init: function (map) {
@@ -101,39 +90,12 @@ const ExampleDraw = {
       this.activeDraw = null;
     }
     if (active) {
-      // const type = optionsForm.elements['draw-type'].value;
       const type = TYPE;
       this.activeDraw = this[type];
       this.activeDraw.setActive(true);
     }
   },
 };
-
-
-/**
- * Let user change the geometry type.
- * @param {Event} e Change event.
- */
-// optionsForm.onchange = function (e) {
-//   const type = e.target.getAttribute('name');
-//   if (type == 'draw-type') {
-//     ExampleModify.setActive(false);
-//     ExampleDraw.setActive(true);
-//     optionsForm.elements['interaction'].value = 'draw';
-//   } else if (type == 'interaction') {
-//     const interactionType = e.target.value;
-//     if (interactionType == 'modify') {
-//       ExampleDraw.setActive(false);
-//       ExampleModify.setActive(true);
-//     } else if (interactionType == 'draw') {
-//       ExampleDraw.setActive(true);
-//       ExampleModify.setActive(false);
-//     }
-//   }
-// };
-
-// ExampleDraw.setActive(false);
-// ExampleModify.setActive(false);
 
 export function agregarInteraccionAgregar(map) {
   ExampleDraw.init(map);
@@ -150,13 +112,11 @@ export function eliminarInteraccionAgregar(map) {
     ExampleDraw.setActive(false);
     ExampleModify.setActive(false);
     map.removeInteraction(snap);
+    //Si se elimina la capa, los objetos agregados no permanecen en el mapa
     // map.removeLayer(capaAgregar);
   }
 }
 
-// The snap interaction must be added after the Modify and Draw interactions
-// in order for its map browser event handlers to be fired first. Its handlers
-// are responsible of doing the snapping.
 const snap = new Snap({
   source: capaAgregar.getSource(),
 });

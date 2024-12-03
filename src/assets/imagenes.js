@@ -8,12 +8,12 @@ import eliminar from './eliminar.png'
 import norte from './norte.png';
 
 export {
-  consulta,
-  agregar,
-  capas,
-  regla,
-  logo,
-  cerrar,
-  eliminar,
-  norte
+  consulta as imgConsulta,
+  agregar as imgAgregar,
+  capas as imgCapas,
+  regla as imgRegla,
+  logo as imgLogo,
+  cerrar as imgCerrar,
+  eliminar as imgEliminar,
+  norte as imgNorte,
 }

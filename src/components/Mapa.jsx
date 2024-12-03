@@ -7,20 +7,23 @@ import { capaBase, capaAgregar } from '../utils/capas';
 import { agregarInteraccionMedir, eliminarInteraccionMedir } from '../utils/interaccionMedir';
 import { agregarInteraccionAgregar, eliminarInteraccionAgregar } from '../utils/interaccionAgregar';
 import { agregarInteraccionConsulta, eliminarInteraccionConsulta } from '../utils/interaccionConsulta';
+import { ESTADOS } from '../App';
 
 
 export default function Mapa({ estado, capasActivas, verInfoCapas, setVerInfoCapas }) {
   
   const [map, setMap] = useState(null);
 
+  // Funcion para quitar las interacciones de cada herramienta.
+  // Usada al cambiar de estados en la aplicacion.
   const limpiarInteracciones = () => {
     eliminarInteraccionMedir(map);
     eliminarInteraccionAgregar(map);
     eliminarInteraccionConsulta(map);
   }
 
+  // Crea el mapa la primera vez.
   useEffect(() => {
-
     const map = new Map({
       target: 'map',
       layers: [capaBase],
@@ -35,8 +38,12 @@ export default function Mapa({ estado, capasActivas, verInfoCapas, setVerInfoCap
       target: '',
     });
     map.addControl(zoomControl);
+
+    const scaleControl = new ScaleLine({
+      units: 'metric',
+    });
+    map.addControl(scaleControl);
     
-    // agregarInteraccionMedir(map);
     setMap(map);
 
     return () => {
@@ -44,20 +51,7 @@ export default function Mapa({ estado, capasActivas, verInfoCapas, setVerInfoCap
     };
   }, []);
 
-  useEffect(()=> {
-    if (map) {
-      const scaleControl = new ScaleLine({
-        units: 'metric',
-      });
-      
-      map.addControl(scaleControl);
-
-      if (verInfoCapas) {
-        map.removeControl(scaleControl);
-      }
-    }
-  }, [map, verInfoCapas])
-
+  // Actualiza el mapa cuando se agreguen o quiten capas.
   useEffect(()=> {
     if (map) {
       let capasAMostrar = []
@@ -72,19 +66,20 @@ export default function Mapa({ estado, capasActivas, verInfoCapas, setVerInfoCap
     }
   }, [capasActivas])
   
+  // Actualiza las interacciones del mapa en función del estado de la aplicación.
   useEffect(()=> {
     if (map) {
       limpiarInteracciones();
 
-      if (estado === 2) {
+      if (estado === ESTADOS.agregar) {
         agregarInteraccionAgregar(map)
       }
   
-      if (estado === 3) {
+      if (estado === ESTADOS.medir) {
         agregarInteraccionMedir(map);
       }
 
-      if (estado === 4) {
+      if (estado === ESTADOS.consulta) {
         agregarInteraccionConsulta(map, setVerInfoCapas);
       }
     }

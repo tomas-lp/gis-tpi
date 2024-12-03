@@ -7,6 +7,8 @@ function InfoCapas() {
   
   const [infoFeatures, setInfoFeatures] = useState([])
 
+  // Extrae de la consulta un arreglo con las features devueltas.
+  // Cada elemento es un objeto que contiene los atributos de la feature.
   useEffect(()=>{
     const features = sourceConsulta.getFeatures();
     const info = features.map(feature => feature.values_);

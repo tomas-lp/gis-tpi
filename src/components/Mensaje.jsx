@@ -1,11 +1,12 @@
 import './Mensaje.css';
-import cerrar from '../assets/cerrar.png';
+import { imgCerrar } from '../assets/imagenes';
+import { ESTADOS } from '../App';
 
 function Mensaje({ texto, setEstado }) {
   return (
     <div id='PopUpMensaje'>
       <p>{texto}</p>
-      <img className='boton' src={cerrar} alt='' onClick={() => setEstado(1)} />
+      <img className='boton' src={imgCerrar} alt='' onClick={() => setEstado(ESTADOS.defecto)} />
     </div>
   );
 }

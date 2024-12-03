@@ -7,11 +7,7 @@
   backdrop-filter: blur(2px);
   border-radius: 12px;
   padding: 10px 14px;
-  /* overflow-x:hidden; */
-  /* white-space: nowrap; */
   overflow-y: hidden;
-  /* text-overflow: ellipsis; */
-  /* max-height: 40vh; */
 }
 
 .listaCapasLeyenda {
@@ -28,10 +24,6 @@
 .leyenda p {
   margin: 0;
   color: #4d4d4d;
-  /* overflow-x:hidden;
-  white-space: nowrap;
-  overflow-y: auto;
-  text-overflow: ellipsis; */
 }
 
 .tituloCapa {
