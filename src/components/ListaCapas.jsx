@@ -17,7 +17,7 @@ const ListaCapas = ({capasActivas, setCapasActivas}) => {
   return (
     <div id="capas">
       <ul>
-        {nombreCapasCatedra.map((capa, i) => <li key={i}><label><input checked={capasActivas[i].isVisible} type="checkbox" id={i} onChange={habilitarCapa}/>{nombreCapasCatedra[i]}</label></li>)}
+        {nombreCapasCatedra.map((capa, i) => <li key={i}><label className={(i>=31 && i<=35 && 'label-bold')}><input checked={capasActivas[i].isVisible} type="checkbox" id={i} onChange={habilitarCapa}/>{nombreCapasCatedra[i]}</label></li>)}
       </ul>
     </div>
   );

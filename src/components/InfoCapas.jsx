@@ -24,7 +24,7 @@ function InfoCapas() {
           <hr/>
           <details open>
             <summary>{infoFeatures.length} elementos:</summary>
-            {infoFeatures.map(feature => <p><strong>{feature.gid}:</strong> {feature.tipo}</p>)}
+            {infoFeatures.map(feature => <p><strong>{feature.gid}:</strong> {feature.tipo ? feature.tipo : feature.provincia }</p>)}
           </details>
         </div>
       }

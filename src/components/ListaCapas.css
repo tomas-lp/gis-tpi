@@ -41,3 +41,7 @@
 #capas input[type='checkbox'] {
   margin-right: 10px; /* Espaciado entre el checkbox y el texto */
 }
+
+.label-bold {
+  font-weight: 500;
+}
