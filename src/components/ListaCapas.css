@@ -61,7 +61,7 @@
   border: 2px solid rgba(255, 255, 255, 0.8);
   color: #4d4d4d;
   width: 220px;
-  font-family: inter;
+  font-family: Inter, system-ui;
   font-size: 17px;
   outline: none;
 }

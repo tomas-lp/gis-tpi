@@ -4,6 +4,10 @@ body {
   margin: 0px;
 }
 
+body * {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
 #norte{
   position: absolute;
   width: 45px;
