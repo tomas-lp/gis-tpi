@@ -15,22 +15,22 @@ const nombreCapasCatedra = [
   'edificio_publico_ips',
   'edificios_ferroviarios',
   'localidades',
-  'marcas_y_se?ales',
+  'marcas_y_señales',
   'estructuras_portuarias',
   'infraestructura_aeroportuaria_punto',
   'infraestructura_hidro',
-  'obra_de_comunicaci?n',
+  'obra_de_comunicacion',
   'obra_portuaria',
   'otras_edificaciones',
   'puente_red_vial_puntos',
   'puntos_de_alturas_topograficas',
   'puntos_del_terreno',
   'salvado_de_obstaculo',
-  'se?alizaciones',
+  'señalizaciones',
   'curso_de_agua_hid',
   'curvas_de_nivel',
   'muro_embalse',
-  'l?neas_de_conducci?n_ene',
+  'lineas_de_conduccion_ene',
   'limite_politico_administrativo_lim',
   'red_ferroviaria',
   'vias_secundarias',
@@ -79,15 +79,16 @@ const capaBase = new TileLayer({
 })
 
 //Capa para la interaccion de agregar poligonos.
-const capaAgregar = new VectorLayer({
-  source: new VectorSource(),
-  style: {
-    'fill-color': 'rgba(255, 255, 255, 0.2)',
-    'stroke-color': '#ffcc33',
-    'stroke-width': 2,
-    'circle-radius': 7,
-    'circle-fill-color': '#ffcc33',
-  },
+const poligonosGuardados = new TileLayer({
+  source: new TileWMS({
+    // url: 'http://localhost:8080/geoserver/gis/wms', //GeoServer
+    url: 'http://localhost:8080/cgi-bin/qgis_mapserv.fcgi.exe', //QGIS Server
+    params: {
+      LAYERS: 'poligonos_guardados',
+      VERSION: '1.1.1',
+    },
+    projection: 'EPSG:4326'
+  }),
 });
 
 
@@ -111,5 +112,5 @@ export {
   nombreCapasCatedra,
   capas,
   capaBase,
-  capaAgregar
+  poligonosGuardados
 }

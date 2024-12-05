@@ -11,7 +11,7 @@ import {LineString, Point} from 'ol/geom.js';
 import {Vector as VectorSource} from 'ol/source.js';
 import {Vector as VectorLayer} from 'ol/layer.js';
 import {getArea, getLength} from 'ol/sphere.js';
-import { capaAgregar } from './capas';
+import { capaAgregar } from './interaccionAgregar';
 
 const typeSelect = 'Polygon'
 const showSegments = true;

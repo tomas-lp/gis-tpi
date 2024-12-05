@@ -42,35 +42,35 @@ export default function Leyenda ({capas}) {
   if (capasLeyenda.length > 0) {
     return (
       <div className="leyenda">
-        <span>Referencias</span>
-        <div className="listaCapasLeyenda">
-        {capasLeyenda.map((capa)=>{
-            return (
-            <div className="capaLeyenda">
-              <p className="tituloCapa">{capa.title}</p>
-              
-              {capa.symbols ?
-                capa.symbols.map((simbolo)=> {
-                  if (simbolo.title) {
-                    return(
-                      <div className="filaLeyenda">
-                        <img src={`data:image/png;base64, ${simbolo.icon}`} alt="Imagen Leyenda" />
-                        <p>{simbolo.title}</p>
-                      </div>
-                    )
-                  }
-                })
-                : 
-                  <div className="filaLeyenda">
-                    <img src={`data:image/png;base64, ${capa.icon}`} alt="Imagen leyenda" />
-                    <p>{capa.title}</p>
-                  </div>                
-              }
-              
-            </div>
-          )
-        })}
-        </div>
+        <details className="listaCapasLeyenda">
+          <summary>Referencias</summary>
+          {capasLeyenda.map((capa)=>{
+              return (
+              <div className="capaLeyenda">
+                <p className="tituloCapa">{capa.title}</p>
+                
+                {capa.symbols ?
+                  capa.symbols.map((simbolo)=> {
+                    if (simbolo.title) {
+                      return(
+                        <div className="filaLeyenda">
+                          <img src={`data:image/png;base64, ${simbolo.icon}`} alt="Imagen Leyenda" />
+                          <p>{simbolo.title}</p>
+                        </div>
+                      )
+                    }
+                  })
+                  : 
+                    <div className="filaLeyenda">
+                      <img src={`data:image/png;base64, ${capa.icon}`} alt="Imagen leyenda" />
+                      <p>{capa.title}</p>
+                    </div>                
+                }
+                
+              </div>
+            )
+          })}
+        </details>
       </div>
     )
   }

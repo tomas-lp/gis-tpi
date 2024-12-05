@@ -1,0 +1,112 @@
+.formAtributos {
+    animation: 0.2s ease-out 0s 1 dissolve;
+    position: absolute;
+    bottom: 80px;
+    right: 22px;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 20px;
+    color: #4d4d4d;
+    min-width: 250px;
+    max-height: 60vh;
+    overflow-y: auto;
+    font-family: inter;
+}
+
+/* Estilos generales para el formulario */
+.formAtributos form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Espaciado uniforme entre los elementos */
+}
+
+.formAtributos label {
+    color: #333;
+    font-size: 14px;
+}
+
+.formAtributos input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+    color: #4d4d4d;
+}
+
+.formAtributos input[type="text"]:focus {
+    border-color: #4d4d4d;
+    outline: none;
+}
+
+.formAtributos input[type="text"]:hover {
+    border-color: #4d4d4d;
+    outline: none;
+}
+
+/* Estilos para los botones */
+.formAtributos .button-group {
+    display: flex;
+    justify-content: space-between; /* Espaciado uniforme entre botones */
+    width: 100%;
+}
+
+.formAtributos button {
+    flex: 1; /* Tamaño igual para ambos botones */
+    padding: 10px;
+    margin: 0 5px; /* Espaciado horizontal */
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#botones{
+    display: flex;
+    flex-direction: rox;
+    align-items: espace-between;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Botón de Enviar */
+.formAtributos button[type="submit"] {
+    background-color: #4d4d4d;
+    color: white;
+    margin: 0px 0px 0px 4px;
+}
+
+.formAtributos button[type="submit"]:hover {
+    background-color: #4d4d4d;
+    transform: scale(1.06);
+}
+
+/* Botón de Cancelar */
+.formAtributos button[type="button"] {
+    background-color: #ffffff;
+    color: #4d4d4d;
+    margin: 0px 4px 0px 0px;
+}
+
+.formAtributos button[type="button"]:hover {
+    background-color: #ffffff;
+    transform: scale(1.06);
+}
+.formAtributos > p {
+    margin: 0; font-weight: bold; 
+    text-align: center; 
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  

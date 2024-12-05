@@ -1,7 +1,7 @@
 import { imgEliminar } from '../assets/imagenes';
 import './BotonEliminarPoligonos.css';
 import { Tooltip } from "react-tooltip";
-import { capaAgregar } from '../utils/capas';
+import { capaAgregar } from '../utils/interaccionAgregar';
 
 function BotonEliminarPoligonos() {
 

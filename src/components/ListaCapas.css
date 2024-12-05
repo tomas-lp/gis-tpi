@@ -6,12 +6,13 @@
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(2px);
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   border-radius: 12px;
   padding: 10px 14px;
-  min-width: 10rem;
-  max-height: 20vh;
+  max-height: 26vh;
+  text-wrap: nowrap;
   overflow-y: auto;
   transition: all 150ms;
 }
@@ -36,6 +37,7 @@
   cursor: pointer;
   display: flex; /* Permite alinear checkbox e ícono con el texto */
   align-items: center;
+  text-transform: capitalize;
 }
 
 #capas input[type='checkbox'] {
@@ -44,4 +46,72 @@
 
 .label-bold {
   font-weight: 500;
+}
+
+#seccionBusqueda{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#inputBuscador{
+  background-color: white;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  color: #4d4d4d;
+  width: 220px;
+  font-family: inter;
+  font-size: 17px;
+  outline: none;
+}
+
+#barraBusqueda:hover{
+  border: 2px solid #4d4d4d;
+  transition: 0.2s;
+}
+
+#barraBusqueda:focus-within{
+  border: 2px solid #4d4d4d;
+}
+
+#lupita{
+  width: 30px;
+  height: auto;
+  margin-left: 10px;
+}
+
+
+#ocultar{
+  width: 30px;
+  height: auto;
+  margin-left: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transition: 0.2s;
+}
+
+#ocultar:hover{
+  border: 2px solid #4d4d4d;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+#barraBusqueda{
+  background-color: white;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 7px;
+  transition: 0.2s;
+}
+
+#seccionBusqueda a {
+  display: flex;
 }

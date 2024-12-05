@@ -1,5 +1,20 @@
 import {Draw, Modify, Select, Snap} from 'ol/interaction.js';
-import { capaAgregar } from './capas';
+import { GML, WFS } from 'ol/format';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+
+export const capaAgregar = new VectorLayer({
+  source: new VectorSource({
+    
+  }),
+  style: {
+    'fill-color': 'rgba(255, 255, 255, 0.2)',
+    'stroke-color': '#ffcc33',
+    'stroke-width': 2,
+    'circle-radius': 7,
+    'circle-fill-color': '#ffcc33',
+  },
+});
 
 const TYPE = 'Polygon';
 
@@ -34,6 +49,8 @@ const ExampleModify = {
         
         selectedFeatures.remove(each);
       });
+
+      console.log('Change')
     });
   },
   setActive: function (active) {
@@ -42,8 +59,14 @@ const ExampleModify = {
   },
 };
 
+function guardarFeature(evt, map, verFormulario, setVerFormulario) {
+  const featureAGuardar = evt.feature;
+  ExampleDraw.destroy(map);
+  return setVerFormulario({visible:true, feature: featureAGuardar});
+}
+
 const ExampleDraw = {
-  init: function (map) {
+  init: function (map, verFormulario, setVerFormulario) {
     map.addInteraction(this.Point);
     this.Point.setActive(false);
     map.addInteraction(this.LineString);
@@ -52,6 +75,8 @@ const ExampleDraw = {
     this.Polygon.setActive(false);
     map.addInteraction(this.Circle);
     this.Circle.setActive(false);
+
+    this.Polygon.on('drawend', (e) => guardarFeature(e, map, verFormulario, setVerFormulario))
     
     if (!map.getLayers().array_.includes(capaAgregar)) {
       map.addLayer(capaAgregar)
@@ -97,8 +122,8 @@ const ExampleDraw = {
   },
 };
 
-export function agregarInteraccionAgregar(map) {
-  ExampleDraw.init(map);
+export function agregarInteraccionAgregar(map, verFormulario, setVerFormulario) {
+  ExampleDraw.init(map, verFormulario, setVerFormulario);
   ExampleModify.init(map);
   ExampleDraw.setActive(true);
   ExampleModify.setActive(false);
@@ -113,7 +138,8 @@ export function eliminarInteraccionAgregar(map) {
     ExampleModify.setActive(false);
     map.removeInteraction(snap);
     //Si se elimina la capa, los objetos agregados no permanecen en el mapa
-    // map.removeLayer(capaAgregar);
+    capaAgregar.getSource().clear();
+    map.removeLayer(capaAgregar);
   }
 }
 

@@ -3,16 +3,17 @@ import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import Zoom from 'ol/control/Zoom';
 import ScaleLine from 'ol/control/ScaleLine'
-import { capaBase, capaAgregar } from '../utils/capas';
+import { capaBase, poligonosGuardados } from '../utils/capas';
+import { capaAgregar } from '../utils/interaccionAgregar';
 import { agregarInteraccionMedir, eliminarInteraccionMedir } from '../utils/interaccionMedir';
 import { agregarInteraccionAgregar, eliminarInteraccionAgregar } from '../utils/interaccionAgregar';
 import { agregarInteraccionConsulta, eliminarInteraccionConsulta } from '../utils/interaccionConsulta';
 import { ESTADOS } from '../App';
 
 
-export default function Mapa({ estado, capasActivas, verInfoCapas, setVerInfoCapas }) {
+export default function Mapa({ map, setMap, estado, capasActivas, verInfoCapas, setVerInfoCapas, verFormulario, setVerFormulario }) {
   
-  const [map, setMap] = useState(null);
+  // const [map, setMap] = useState(null);
 
   // Funcion para quitar las interacciones de cada herramienta.
   // Usada al cambiar de estados en la aplicacion.
@@ -26,7 +27,7 @@ export default function Mapa({ estado, capasActivas, verInfoCapas, setVerInfoCap
   useEffect(() => {
     const map = new Map({
       target: 'map',
-      layers: [capaBase],
+      layers: [capaBase, poligonosGuardados],
       view: new View({
         center: [-7288745, -4959008],
         zoom: 4.5,
@@ -51,6 +52,7 @@ export default function Mapa({ estado, capasActivas, verInfoCapas, setVerInfoCap
     };
   }, []);
 
+
   // Actualiza el mapa cuando se agreguen o quiten capas.
   useEffect(()=> {
     if (map) {
@@ -61,8 +63,8 @@ export default function Mapa({ estado, capasActivas, verInfoCapas, setVerInfoCap
           capasAMostrar.push(capa.capaOL);
         }
       });
-
-      map.setLayers([capaBase, ...capasAMostrar, capaAgregar])
+      // map.setLayers([poligonosGuardados]);
+      map.setLayers([capaBase, ...capasAMostrar, poligonosGuardados, capaAgregar])
     }
   }, [capasActivas])
   
@@ -72,7 +74,7 @@ export default function Mapa({ estado, capasActivas, verInfoCapas, setVerInfoCap
       limpiarInteracciones();
 
       if (estado === ESTADOS.agregar) {
-        agregarInteraccionAgregar(map)
+        agregarInteraccionAgregar(map, verFormulario, setVerFormulario)
       }
   
       if (estado === ESTADOS.medir) {
