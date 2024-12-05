@@ -162,6 +162,8 @@ function realizarConsulta(map, transformedExtent, setVerInfoCapas) {
     }
   });
 
+  nombreCapasActivas.push('poligonos_guardados');
+
   const featureRequest = new WFS().writeGetFeature({
     srsName: 'EPSG:4326',
     geometryName: 'geom',

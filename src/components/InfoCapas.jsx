@@ -5,7 +5,8 @@ import { sourceConsulta } from '../utils/interaccionConsulta';
 
 function InfoCapas() {
   
-  const [infoFeatures, setInfoFeatures] = useState([])
+  const [infoFeatures, setInfoFeatures] = useState([]);
+  const [infoSeleccionada, setInfoSeleccionada] = useState(null);
 
   // Extrae de la consulta un arreglo con las features devueltas.
   // Cada elemento es un objeto que contiene los atributos de la feature.
@@ -14,6 +15,12 @@ function InfoCapas() {
     const info = features.map(feature => feature.values_);
     setInfoFeatures(info);
   },[])
+
+  function handleSelect(feature) {
+    const info = { ...feature };
+    delete info['geometry'];
+    setInfoSeleccionada(info);
+  }
 
 
   return (
@@ -24,8 +31,20 @@ function InfoCapas() {
           <hr/>
           <details open>
             <summary>{infoFeatures.length} elementos:</summary>
-            {infoFeatures.map(feature => <p><strong>{feature.gid}:</strong> {feature.tipo ? feature.tipo : feature.provincia }</p>)}
+            {infoFeatures.map(feature => {
+              return(
+              <>
+                <p onClick={() => handleSelect(feature)}><strong>{feature.gid || `PG${feature.id}`}:</strong> {feature.nombre || feature.tipo || feature.provincia }</p>
+              </>
+              )
+            })}
           </details>
+        </div>
+      }
+
+      {infoSeleccionada && 
+        <div className='fullInfo'>
+          {Object.entries(infoSeleccionada).map((col)=> <p><strong>{col[0]}</strong>: {col[1]}</p>)}
         </div>
       }
     </>

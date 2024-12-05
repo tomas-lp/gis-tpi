@@ -2,7 +2,8 @@
     animation: 0.2s ease-out 0s 1 dissolve;
     position: absolute;
     bottom: 80px;
-    right: 22px;
+    /* right: 22px; */
+    right: 40px;
     background-color: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(6px);
     display: flex;

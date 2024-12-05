@@ -55,7 +55,7 @@ function MapView() {
 
       <img id="norte" src={imgNorte} alt="" />
 
-      {estado !== ESTADOS.agregar && <p id="coordenadas">EPSG: 4326</p>}      
+      {/* {estado !== ESTADOS.agregar && <p id="coordenadas">EPSG: 4326</p>}       */}
 
       
       <div id="controles">

@@ -27,16 +27,19 @@
   color: #4d4d4d;
 }
 
-.tituloCapa {
+.leyenda .tituloCapa {
   font-weight: 500;
-  padding-left: 10px;
+  /* padding-left: 10px; */
+  text-transform: capitalize;
+  display: flex;
+  margin-bottom: 8px;
 }
 
 .filaLeyenda {
   display: flex;
   flex-direction: row;
-  gap: 4px;
+  gap: 8px;
   width: 300px;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 8px;
 }

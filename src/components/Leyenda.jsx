@@ -47,7 +47,7 @@ export default function Leyenda ({capas}) {
           {capasLeyenda.map((capa)=>{
               return (
               <div className="capaLeyenda">
-                <p className="tituloCapa">{capa.title}</p>
+                <p className="tituloCapa">{capa.title.replaceAll('_',' ')}</p>
                 
                 {capa.symbols ?
                   capa.symbols.map((simbolo)=> {

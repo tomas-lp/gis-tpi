@@ -1,7 +1,8 @@
 #capas {
   animation: 0.2s ease-out 0s 1 dissolve;
   top:62px;
-  left:76px;
+  /* left:76px; */
+  left: 0px;
   position: absolute;
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(2px);
